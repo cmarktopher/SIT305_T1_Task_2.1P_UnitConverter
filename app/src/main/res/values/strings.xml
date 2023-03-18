@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UnitConverter</string>
+    <string name="main_app_title_text">Unit Converter</string>
+    <string name="source_unit_spinner_description">Source unit drop down menu.</string>
+    <string name="destination_unit_spinner_description">Destination unit drop down menu</string>
+    <string name="convert_button">Convert!</string>
+    <string name="source_value_entry_prompt">Enter Value:</string>
+    <string name="enter_value_hint_text">Source Value:</string>
+    <string name="destination_value_hint">Result:</string>
 </resources>
