@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Float convertedValue = conversionValue.Convert(convertedInput);
 
             // Set the display text to the new value
-            outputTextView.setText(convertedValue.toString());
+            outputTextView.setText("Result: " + convertedValue.toString());
         }
 
     }

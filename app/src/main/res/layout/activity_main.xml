@@ -47,20 +47,46 @@
             app:layout_constraintStart_toStartOf="@+id/vertical_guideline_02"
             app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_01" />
 
+        <TextView
+            android:id="@+id/source_text_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/source_unit_label"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintBottom_toTopOf="@+id/source_unit_spinner"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_05"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline_02"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_02" />
+
+        <TextView
+            android:id="@+id/destination_text_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/destination_unit_label"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintBottom_toTopOf="@+id/destination_unit_spinner"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_03"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline_04"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_02" />
+
         <Spinner
             android:id="@+id/source_unit_spinner"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="50dp"
             android:contentDescription="@string/source_unit_spinner_description"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline_03"
             app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_05"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/vertical_guideline_02"
-            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_02" />
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_02"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Spinner
             android:id="@+id/destination_unit_spinner"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="50dp"
             android:contentDescription="@string/destination_unit_spinner_description"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline_03"
             app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_03"

@@ -8,7 +8,8 @@
     <string name="enter_value_hint_text">Source Value:</string>
     <string name="destination_value_hint">Result:</string>
     <string name="type_description">Dropdown menu for conversion types</string>
-
+    <string name="source_unit_label">Source Unit</string>
+    <string name="destination_unit_label">Destination Unit</string>
     <string-array name="conversion_type_options">
         <item>length</item>
         <item>mass</item>
