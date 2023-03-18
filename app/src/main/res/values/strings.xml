@@ -7,4 +7,12 @@
     <string name="source_value_entry_prompt">Enter Value:</string>
     <string name="enter_value_hint_text">Source Value:</string>
     <string name="destination_value_hint">Result:</string>
+    <string-array name="length_conversion_options">
+        <item>cm</item>
+        <item>km</item>
+        <item>inch</item>
+        <item>foot</item>
+        <item>yard</item>
+        <item>mile</item>
+    </string-array>
 </resources>
