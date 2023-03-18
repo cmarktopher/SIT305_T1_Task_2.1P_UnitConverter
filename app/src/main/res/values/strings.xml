@@ -7,13 +7,26 @@
     <string name="source_value_entry_prompt">Enter Value:</string>
     <string name="enter_value_hint_text">Source Value:</string>
     <string name="destination_value_hint">Result:</string>
+    <string name="type_description">Dropdown menu for conversion types</string>
+
+    <string-array name="conversion_type_options">
+        <item>length</item>
+        <item>mass</item>
+        <item>temperature</item>
+    </string-array>
+
     <string-array name="length_conversion_options">
         <item>cm</item>
         <item>inch</item>
+    </string-array>
+
+    <string-array name="mass_conversion_options">
         <item>pound</item>
         <item>kg</item>
+    </string-array>
+
+    <string-array name="temperature_conversion_options">
         <item>celsius</item>
         <item>fahrenheit</item>
-
     </string-array>
 </resources>

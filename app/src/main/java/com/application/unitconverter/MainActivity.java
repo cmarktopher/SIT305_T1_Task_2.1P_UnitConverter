@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // UI Element Properties
     //---------------------------------------------------------------------------------------------
 
+    private Spinner typeSpinner;
     private Spinner sourceSpinner;
     private Spinner destinationSpinner;
     private EditText inputTextView;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Conversion Properties
     //---------------------------------------------------------------------------------------------
 
+    private HashMap<String, Integer> conversionTypeMapping = new HashMap<String, Integer>();
     private HashMap<String, IConversion> conversionFactors = new HashMap<String, IConversion>();
 
     //---------------------------------------------------------------------------------------------
@@ -66,29 +68,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         HandleSpinnerInitialization();
         HandleInputAndOutputInitialization();
         HandleButtonInitialization();
-        HandleConversionInitialization();
+
+        HandleConversionTypeInitialization();
+        HandleConversionFactorsInitialization();
+
     }
 
     private void HandleSpinnerInitialization(){
 
+        typeSpinner = findViewById(R.id.type_spinner);
         sourceSpinner = findViewById(R.id.source_unit_spinner);
         destinationSpinner = findViewById(R.id.destination_unit_spinner);
 
-        // The following lines of code are from the android documentation
-        // From my understanding, we are essentially creating a menu of selectable based on the xml
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.length_conversion_options,
-                android.R.layout.simple_spinner_item
-        );
+        // Create adapter for the different conversion types
+        CreateAdapter(R.array.conversion_type_options, typeSpinner);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Set the created adapter for both source and destination spinners since they will share the same options anyway
-        sourceSpinner.setAdapter(adapter);
-        destinationSpinner.setAdapter(adapter);
+        // Create adapter with length conversion options first for both source and destination
+        CreateAdapter(R.array.length_conversion_options, sourceSpinner);
+        CreateAdapter(R.array.length_conversion_options, destinationSpinner);
 
         // Also, we want to bind a callback whenever we change an option in the dropdown menus
+        typeSpinner.setOnItemSelectedListener(this);
         sourceSpinner.setOnItemSelectedListener(this);
         destinationSpinner.setOnItemSelectedListener(this);
     }
@@ -111,6 +111,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
+    private void HandleConversionTypeInitialization(){
+
+        // I'll do this manually for now, need to find a better way to interface this with xml
+        conversionTypeMapping.put("length", R.array.length_conversion_options);
+        conversionTypeMapping.put("mass", R.array.mass_conversion_options);
+        conversionTypeMapping.put("temperature", R.array.temperature_conversion_options);
+    }
+
     /**
      * Create lambda expressions and place them into a dictionary/hashmap.
      * We can then use the source and destination selections as our keys and call the interface method.
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      * We are defining the implementation differently in each lambda expressions (difference in constant values or multiplication/division)
      * and when we call the interface method later, the relevant implementation will run.
      */
-    private void HandleConversionInitialization(){
+    private void HandleConversionFactorsInitialization(){
 
         // Length conversion factors
         conversionFactors.put("inchcm", (a) -> { return a * 2.54f; });
@@ -137,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     //---------------------------------------------------------------------------------------------
-    // Spinner related callbacks
+    // Spinner related callbacks and methods
     //---------------------------------------------------------------------------------------------
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -154,6 +162,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else if (adapterView == destinationSpinner) {
 
             chosenDestinationUnits = chosenOptionText;
+        } else if (adapterView == typeSpinner){
+
+            // Additional logic outside of the scope of task where we swap menus depending on the type of conversion selected
+            CreateAdapter(conversionTypeMapping.get(chosenOptionText), sourceSpinner);
+            CreateAdapter(conversionTypeMapping.get(chosenOptionText), destinationSpinner);
         }
 
     }
@@ -163,6 +176,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Nothing to add here but needs to exist due to AdapterView.OnItemSelectedListener being implemented
 
+    }
+
+    private void CreateAdapter(int conversionOptions, Spinner spinner) {
+
+        // The following lines of code are from the android documentation
+        // From my understanding, we are essentially creating a menu of selectable based on the xml
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                conversionOptions,
+                android.R.layout.simple_spinner_item
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Set the created adapter for the passed in spinner
+        spinner.setAdapter(adapter);
     }
 
     //---------------------------------------------------------------------------------------------
