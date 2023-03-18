@@ -9,10 +9,11 @@
     <string name="destination_value_hint">Result:</string>
     <string-array name="length_conversion_options">
         <item>cm</item>
-        <item>km</item>
         <item>inch</item>
-        <item>foot</item>
-        <item>yard</item>
-        <item>mile</item>
+        <item>pound</item>
+        <item>kg</item>
+        <item>celsius</item>
+        <item>fahrenheit</item>
+
     </string-array>
 </resources>

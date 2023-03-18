@@ -62,6 +62,7 @@
             app:layout_constraintTop_toTopOf="@+id/horizontal_guideline_03">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_text"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:hint="@string/enter_value_hint_text"
