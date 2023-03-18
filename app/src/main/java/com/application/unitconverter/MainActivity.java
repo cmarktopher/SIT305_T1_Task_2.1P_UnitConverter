@@ -11,10 +11,12 @@ package com.application.unitconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // State Properties (Basically representing current choices of source/destinations unit etc)
     //---------------------------------------------------------------------------------------------
 
+    private String chosenSourceUnits;
+    private String chosenDestinationUnits;
 
     //---------------------------------------------------------------------------------------------
     // Initialization
@@ -73,6 +77,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+        // Here, we are getting the chosen text from the adapter
+        String chosenOptionText = adapterView.getItemAtPosition(i).toString();
+
+        // Toast message
+        String toastMessage = "";
+
+        // After some logging, I realised that the adapter view is just the spinner objects
+        // Meaning, I can check if they are equal to the cached references, allowing me to differentiate when I selected a source or destination unit.
+        if (adapterView == sourceSpinner){
+
+            chosenSourceUnits = chosenOptionText;
+            toastMessage = "Source units are: " + chosenSourceUnits;
+
+        } else if (adapterView == destinationSpinner) {
+
+            chosenDestinationUnits = chosenOptionText;
+            toastMessage = "Destination units are: " + chosenDestinationUnits;
+        }
+
+        // Use a toast to show the unit selected - may remove later
+        Toast toast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
